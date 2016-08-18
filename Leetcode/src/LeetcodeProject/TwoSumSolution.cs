@@ -3,7 +3,9 @@ using System;
 namespace LeetcodeProject
 {
     /*
-    No. 1
+    No. 1 Two Sum
+    https://leetcode.com/problems/two-sum/
+
     Total Accepted: 272598
     Total Submissions: 1069617
     Difficulty: Easy
