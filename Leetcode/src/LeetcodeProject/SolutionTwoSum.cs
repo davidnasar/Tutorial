@@ -24,7 +24,7 @@ namespace LeetcodeProject
     UPDATE (2016/2/13):
     The return format had been changed to zero-based indices. Please read the above updated description carefully.   
     */
-    class TwoSumSolution : IRun
+    class SolutionTwoSum : IRun
     {
         public void Run()
         {
