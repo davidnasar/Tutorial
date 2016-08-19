@@ -12,6 +12,33 @@ namespace LeetcodeProject
         var result = ints.OrderBy(g => g);
         */
 
+        public static List<int> AllIndexOf(this string input, char target)
+        {
+            var result = new List<int>();
+            if (string.IsNullOrWhiteSpace(input) ||
+                target == null ||
+                string.IsNullOrWhiteSpace(target.ToString()))
+                return result;
+
+            var array = input.ToArray();
+            for (var i = 0; i < array.Length; i++)
+            {
+                if (array[i] == target)
+                    result.Add(i);
+            }
+            return result;
+        }
+
+        public static char[] FindRepeatChar(this string input)
+        {
+            var result = input.ToArray()
+                .GroupBy(l => l)
+                .Where(g => g.Count() > 1)
+                .Select(t => t.Key)
+                .ToArray();
+            return result;
+        }
+
         public static string Reverse(this string input)
         {
             var arary = input.ToArray().Reverse().ToArray();
