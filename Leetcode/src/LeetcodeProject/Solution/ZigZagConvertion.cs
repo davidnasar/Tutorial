@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LeetcodeProject.Solution
+namespace LeetcodeProject
 {
     /*
     No.6 ZigZag Conversion
@@ -28,7 +29,9 @@ namespace LeetcodeProject.Solution
     {
         public void Run()
         {
-            throw new NotImplementedException();
+            var r1 = Convert("PAYPALISHIRING", 3);
+            var r2 = Convert("PAYPALISHIRING", 4);
+            var r3 = Convert("PAYPALISHIRING", 5);
         }
 
         public string Convert(string s, int numRows)
@@ -36,13 +39,41 @@ namespace LeetcodeProject.Solution
             var output = SubFormat(s, numRows);
             var outs = output.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
             var length = outs.Length;
+            var list = new List<char[]>();
             foreach (var o in outs)
             {
-                var array = o.ToArray();
-
+                var detail = FillLength(o, numRows);
+                var array = detail.ToArray();
+                list.Add(array);
             }
+            var sb = new StringBuilder();
+            for (var i = 0; i < numRows; i++)
+            {
+                foreach(var l in list)
+                {
+                    var singleStr = l[i].ToString();
+                    var str = DealWith(singleStr);
+                    sb.Append(str);
+                }
+            }
+            return sb.ToString();
+        }
 
-            return "";
+        private string FillLength(string detail, int numRows)
+        {
+            var length = detail.Length;
+            if (length == numRows) return detail;
+
+            var longEmptyStr = "                    ";  //20-length
+            var restLength = numRows - detail.Length;
+            string emptyStr = longEmptyStr.Substring(0, restLength);
+            return detail + emptyStr;
+        }
+
+        private string DealWith(string detail)
+        {
+            if (string.IsNullOrWhiteSpace(detail.Trim())) return "";
+            return detail;
         }
 
         private string SubFormat(string input, int numRows)
